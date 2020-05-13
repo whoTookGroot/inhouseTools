@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><%= pageTitle %></title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+    <header class="main-header">
+        <nav class="main-header__nav">
+            <ul class="main-header__item-list">
+                <li class="main-header__item"><a href="/">Tools</a></li>
+                <li class="main-header__item"><a class="active" href="/whois">Whois</a></li>
+                <li class="main-header__item"><a href="/login">login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h3 class="text-nowrap">Domain Name: </h3>
+        </div>
+         <div class="row">
+          <form id="test" action="/whois" method="POST">
+            <input type="text" name="domainName">
+            <div class="row-separator"></div>
+            <input type="submit" value="Submit">
+          </form>
+         </div>
+         <div class="row-separator"></div>
+         <!--Flash Messages-->
+         <div class="row flash-msg">
+         </div>
+         <!--TBD Expandable Log output-->
+         <div class="row whois">
+         </div>
+        </div>
+    </main>
+</body>
+
+</html>
