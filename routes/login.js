@@ -1,18 +1,12 @@
 const path = require('path');
-const { google } = require('googleapis');
 const express = require('express');
-const base64url = require('base64url');
-const OAuth2Data = require('../google_key.json');
 
 const router = express.Router();
-const rootDir = require('../util/path');
 
-router.get('/login', (req, res, next)=>{
-    res.sendFile(path.join(rootDir,'views','login.html'));
-});
+const loginCont = require('../controllers/login');
 
-router.post('/login', (req, res, next)=>{
-    res.redirect('/');
-});
+router.get('/login', loginCont.getLogin);
+
+router.post('/login', loginCont.postLogin);
 
 module.exports = router;
