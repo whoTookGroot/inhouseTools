@@ -12,15 +12,18 @@
 </head>
 
 <body>
-    <div class="login-wrap">
-    <div class="login-box">
-    <h1><span style="color: rgb(2,88,255)">Gosite</span> Tools</h1>
-    <div class="login-msg"></div>
-    <form class="product-form" action="/login" method="POST">
-        <button class="login-btn">Login</button>
-    </form>
-    </div>
-    </div>
+    <%- include('includes/nav.ejs'); %>
+    <main>
+        <div class="login-wrap">
+            <div class="login-box">
+                <h1><span style="color: rgb(2,88,255)">Gosite</span> Tools</h1>
+                <div class="login-msg"></div>
+                <form class="product-form" action="/login" method="POST">
+                    <button class="login-btn">Login</button>
+                </form>
+            </div>
+        </div>
+    </main>
 </body>
 
 </html>

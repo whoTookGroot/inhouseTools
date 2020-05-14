@@ -1,75 +1,39 @@
 const express = require('express');
-const {exec} = require('child_process');
 const promise = require('promise');
-const readline = require('readline');
-const { Client } = require('pg');
-
-const client = new Client({
-    user: 'admin',
-    host: 'localhost',
-    database: 'domains',
-    password: '7x*an9ad',
-    port: 5432,
-  });
-
-client.connect(err =>{
-    if(err){
-        console.log('Failed to connect to psql db on port',client['port'],'error:',err['routine']);
-    }
-    else
-        console.log('Connected to psql db on port',client['port']);
-});
+const {exec} = require('child_process');
+const {DomainDB} = require('../models/domains');
 
 var getWhois = (req,res,next) =>{
-    res.render('whois',{pageTitle : 'Whois'});
+    res.render('whois',{
+        pageTitle : 'Whois',
+        path: '/whois'
+    });
 }
 
 var postWhois = (req,res,next)=>{
     let name = req.body.domainName;
-    console.log('======================================\nDomain:',name);
-
+    
     if(name){
-        resolveQuery(name).then(resp =>{
-            console.log('Sending response code :',resp);
-            res.render('whois',{pageTitle : 'Whois'});
-        }).catch(e => {
+        const domaindb = new DomainDB();
+        domaindb.checkDB(name).then(resp =>{
+            if(resp !=='')
+                console.log('\'', name,'\'','is an existing domain, availability: ', resp);
+            else{
+                whois(name).then(resp =>{
+                    domaindb.insertDB(name,resp);
+                }).catch(e => {
+                    console.log(e);
+                });
+            }
+        }).catch(e =>{
             console.log(e);
         });
     }
-    else
-        res.render('whois',{pageTitle : 'Whois'});
-}
-
-async function resolveQuery(name){
-    let status = await checkDB(name);
-
-    if(status !=='')
-        console.log('\'', name,'\'','is an existing domain, availability: ', status);
-    else{
-        status = await whois(name);
-        client.query('insert into domains(domain,availability) values($1,$2)',[name,status]);
-    }
-    return status;
-}
-
-
-var checkDB = (name) => {
-    return new promise((resolve, reject) => {
-        client.query('select * from domains where domain=$1',[name], (err, res) => {
-            if(err){
-                console.log(err);
-                reject(err);
-            }
-            else{
-                if(res.rows == '')
-                    resolve('');
-                else
-                    resolve(res.rows[0].availability);
-            }
-        });
+    res.render('whois',{
+        pageTitle : 'Whois',
+        path:'/whois'
     });
 }
-
 
 //promise function
 var whois = name =>{
