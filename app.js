@@ -17,6 +17,7 @@ const toolsRoutes = require('./routes/tools');
 const loginRoutes = require('./routes/login');
 const logoutRoutes = require('./routes/logout');
 const whoisRoutes = require('./routes/whois');
+const wehostRoutes = require('./routes/wehost');
 
 const pgPool = new pg.Pool({
     user: 'admin',
@@ -40,16 +41,17 @@ app.use(
             saveUninitialized: false
         }
     )
-);/*
+);
 app.use(loginRoutes);
 app.use((req,res,next) =>{
     if(req.session.loggedIn != true)
         res.redirect('/login');
     else
         next();
-});*/
+});
 app.use(toolsRoutes);
 app.use(whoisRoutes);
+app.use(wehostRoutes);
 app.use(logoutRoutes);
 app.use(errorCont.get404);
 

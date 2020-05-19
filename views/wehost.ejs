@@ -1,4 +1,5 @@
 <%- include('includes/head.ejs')%>
+
 </head>
 
 <body>
@@ -8,7 +9,7 @@
         <h3 class="text-nowrap">Domain Name: </h3>
         </div>
          <div class="row">
-          <form id="test" action="/whois" method="POST">
+          <form id="test" action="/wehost" method="POST">
             <input type="text" name="domainName">
             <div class="row-separator"></div>
             <input type="submit" value="Submit">
@@ -19,13 +20,13 @@
          <!--Flash Messages-->
          <div class="row flash-msg">
              <% if(flashMsg == 0) {%>
-                <div class='danger'>Domain is taken</div>
+                <div class='danger'>We don't host it</div>
             <% } else if(flashMsg == 1) {%>
-                <div class='success'>Domain is available</div>
+                <div class='success'>We host it</div>
             <% } %>
          </div>
          <!--TBD Expandable Log output-->
-         <div class="row whois">
+         <div class="row wehost">
          </div>
         </div>
     </main>

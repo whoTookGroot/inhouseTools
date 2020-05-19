@@ -2,10 +2,21 @@
     <nav class="main-header__nav">
         <ul class="main-header__item-list">
             <li class="main-header__item">
+                <div class="logo" style="max-width: 100px; background-color: white">
+                    <img src="/img/site-logo.png">
+                </div>
+            </li>
+        </ul>
+        <% if(pageTitle != 'Login'){%>
+        <ul class="main-header__item-list">
+            <li class="main-header__item">
                 <a class="<%= path === '/' ? 'active' : '' %>" href="/">Tools</a>
             </li>
             <li class="main-header__item">
                 <a class="<%= path === '/whois' ? 'active' : '' %>" href="/whois">Whois</a>
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/wehost' ? 'active' : '' %>" href="/wehost">Wehost</a>
             </li>
         </ul>
         <ul class="main-header__item-list">
@@ -15,5 +26,6 @@
                 </form>
             </li>
         </ul>
+        <% } %>
     </nav>
 </header>

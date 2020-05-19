@@ -76,3 +76,7 @@ main {
 .row-separator{
     height: 10px;
 }
+
+img{
+    width: 100%;
+}

@@ -1,4 +1,3 @@
-const express = require('express');
 const promise = require('promise');
 const {exec} = require('child_process');
 const {DomainDB} = require('../models/domains');
