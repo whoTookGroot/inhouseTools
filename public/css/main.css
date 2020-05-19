@@ -52,3 +52,27 @@ main {
 .main-header__item a.active {
     color: black;
 }
+
+.danger{
+    padding:10px;
+    border: 1px solid #9b1d2a;
+    background-color: #f8d7da;
+    color: #9b1d2a;
+    border-radius: 5px;
+}
+
+.success{
+    padding:10px;
+    border: 1px solid rgb(64, 185, 53);
+    background-color: rgb(209, 255, 208);
+    color: rgb(64, 185, 53);
+    border-radius: 5px;
+}
+
+.flash-msg{
+    width:150px;
+}
+
+.row-separator{
+    height: 10px;
+}

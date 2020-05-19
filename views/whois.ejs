@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><%= pageTitle %></title>
     <link rel="stylesheet" href="/css/main.css">
+
 </head>
 
 <body>
@@ -23,8 +24,14 @@
           </form>
          </div>
          <div class="row-separator"></div>
+         <div class="row-separator"></div>
          <!--Flash Messages-->
          <div class="row flash-msg">
+             <% if(flashMsg == 0) {%>
+                <div class='danger'>Domain is taken</div>
+            <% } else if(flashMsg == 1) {%>
+                <div class='success'>Domain is available</div>
+            <% } %>
          </div>
          <!--TBD Expandable Log output-->
          <div class="row whois">

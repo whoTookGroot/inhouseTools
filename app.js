@@ -40,14 +40,14 @@ app.use(
             saveUninitialized: false
         }
     )
-);
+);/*
 app.use(loginRoutes);
 app.use((req,res,next) =>{
     if(req.session.loggedIn != true)
         res.redirect('/login');
     else
         next();
-});
+});*/
 app.use(toolsRoutes);
 app.use(whoisRoutes);
 app.use(logoutRoutes);
