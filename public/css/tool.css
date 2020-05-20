@@ -1,7 +1,6 @@
-.product-form {
+.tool-form {
     width: 20rem;
     max-width: 90%;
-    margin: auto;
 }
 
 .form-control {
@@ -33,4 +32,15 @@ button:hover,
 button:active {
     background-color: rgb(2,88,255);
     color: white;
+}
+
+.tool-title{
+    max-width: 300px;
+    height: auto;
+    margin: auto;
+}
+
+.tool-box{
+    max-width: 300px;
+    margin: auto;
 }
