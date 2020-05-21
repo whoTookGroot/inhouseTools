@@ -3,12 +3,15 @@ const express = require('express');
 const base64url = require('base64url');
 const OAuth2Data = require('../data/google_key.json');
 
+//set oauth parameters
 const CLIENT_ID = OAuth2Data.web.client_id;
 const CLIENT_SECRET = OAuth2Data.web.client_secret;
 const REDIRECT_URL = OAuth2Data.web.redirect_uris;
 
+//initialize oauth client
 const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
 
+//get requests
 function getLogin(req,res,next){
     if(req.session.loggedIn)
         res.redirect('/');
@@ -20,8 +23,9 @@ function getLogin(req,res,next){
         });
 }
 
-
+//post requests
 function postLogin(req,res,next){
+    //send user to google, request appropriate account fields
     const url = oAuth2Client.generateAuthUrl({
         access_type: 'offline',
         scope: 'openid email profile',
@@ -30,7 +34,7 @@ function postLogin(req,res,next){
     res.redirect(url);
 }
 
-
+//return from user auth
 function authCallback(req,res,next) {
     const code = req.query.code
     if (code) {
@@ -41,6 +45,7 @@ function authCallback(req,res,next) {
                 console.log(err);
             } else {
                 console.log('Google Successfully authenticated');
+                //check 'hd' hosted domain field for gosite.com
                 let header = tokens.id_token.split('.');
                 let hd = JSON.parse(base64url.decode(header[1])).hd;
                 if(hd =='gosite.com'){
